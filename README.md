@@ -13,7 +13,7 @@ Chaque développeur peut créer des branches supplémentaires s'il en a besoin
 Pour envoyer vos modifications vers les branches principales  : 
 
 - Ouvrez une demande de "pull-request" de votre branche vers la branche develop
-- 3 contriobuteurs doivent valider votre demande.
+- 3 contributeurs doivent valider votre demande.
 
 ### Pull Request de Develop vers Main
 La fusion de la branche develop vers la branch main est réalisée lorsque l'ensemble des modifications d'un ticket ont été validés sur la branche Develop.
