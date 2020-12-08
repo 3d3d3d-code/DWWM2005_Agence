@@ -1,0 +1,16 @@
+# activation de l'option de suivi des liens symboliques
+Options +FollowSymLinks 
+
+# activation du moteur de réécriture d'url
+RewriteEngine On
+
+
+# Si la requête (REQUEST_FILENAME) ne mène pas vers un dossier existant !-d
+# ET 
+# Si la requête (REQUEST_FILENAME) ne mène pas vers un fichier existant !-f
+#
+# La règle de réécriture redirige la requête vers le fichier /index.php 
+
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.php
