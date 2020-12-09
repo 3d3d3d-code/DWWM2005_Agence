@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ROUTER.PHP
  * 
@@ -13,9 +14,4 @@
  * @version 1.0.0
  */
 
-if(!file_exists(__DIR__ .$_SERVER['REQUEST_URI'])) {
-    require (__DIR__.'/index.php');
-}
-else {
-    return false;
-}
+return !file_exists(__DIR__ . $_SERVER['REQUEST_URI']) ? require(__DIR__ . '/index.php') : false;
