@@ -1,9 +1,8 @@
 <?php 
 
 /**
- * BASECONTROLLER.PHP
+ * HOMECONTROLLER.PHP
  * 
- * Classe abstraite
  * Contrôleur pour la page d'accueil du site
  * 
  * @author MDevoldere

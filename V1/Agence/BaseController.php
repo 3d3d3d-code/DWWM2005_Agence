@@ -18,7 +18,7 @@ abstract class BaseController
 {
 
     /** 
-     * LA méthode index() est la méthode par défaut.
+     * La méthode index() est la méthode par défaut.
      * Tous les contrôleurs qu ihéritent de BaseController DOIVENT implémenter la méthode
      */
     abstract public function index();
