@@ -32,6 +32,7 @@ class Validation
      */
     static public function isAlphabetic(string $subject): bool
     {
+
         // si $subject correspond à la regex
         if (preg_match('/^[a-zA-Z]+$/', $subject)) {
             return true;
