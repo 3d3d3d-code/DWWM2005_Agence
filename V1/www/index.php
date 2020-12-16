@@ -15,6 +15,7 @@
 // inclusion de l'autoloader
 require_once dirname(__DIR__) . '/Agence/autoload.php';
 
+use Agence\FrontController;
 use Agence\Validation;
 
 
@@ -22,6 +23,8 @@ use Agence\Validation;
  * Lecture du chemin demandé (et supprression des "/" en début et fin de chaine)
  */
 $path = trim($_SERVER['REQUEST_URI'], '/');
+
+
 
 /**
  * On scinde le chemin (le chemin est séparé par les slashes "/")
@@ -45,7 +48,9 @@ $controller = !empty($route[0]) ? $route[0] : 'home';
 $action = !empty($route[1]) ? $route[1] : 'index';
 
 // récupération du 3ème élement du tableau. S'il est vide ou inexistant, on attribue la valeur null
-$param = !empty($route[2]) ? $route[2] : null;
+$id = !empty($route[2]) ? $route[2] : null;
+
+
 
 
 /**
@@ -64,8 +69,6 @@ if (Validation::isAlphabetic($controller) && Validation::isAlphabetic($action)) 
     // on définit le nom de la classe Controller à instancier
     $controller = '\\Agence\\Controllers\\' . $controller . 'Controller';
 
-    // et on crée une nouvelle instance du contrôleur (l'autoloader prend le relais)
-    $controller = new $controller();
 
     /**
      * ACTION ($route[1])
@@ -73,25 +76,11 @@ if (Validation::isAlphabetic($controller) && Validation::isAlphabetic($action)) 
     $action = mb_convert_case($action, MB_CASE_LOWER); // conversion de la casse de la chaine (tout en minuscule)
     $action = basename($action);
 
-    // si $action correspond à une méthode existante dans notre contrôleur
-    // on exécute l'action demandée 
-    if (method_exists($controller, $action)) {
-        /**
-         * $result = $controller->{$action}();
-         * echo $result;
-         * exit;
-         * 
-         * (la ligne ci dessous est un raccourci pour les 3 lignes commentées ci-dessus)
-         */
-        exit($controller->{$action}());
-    } else {
-        exit('Invalid Action');
-    }
+    // on instancie le contrôleur frontal
+    $frontcontroller = new FrontController($controller, $action, $id);
 
-    //var_export($controller);
-
-} else {
-    exit('Invalid Request');
-    // controller ou action NO OK
-    // on déclenchera ici une erreur 
-}
+    // exécution du contrôleur frontal
+    $result = $frontcontroller->index();
+    echo $result;
+    exit;
+} // fin if validation

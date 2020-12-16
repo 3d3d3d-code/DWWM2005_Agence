@@ -13,22 +13,49 @@
 namespace Agence\Controllers;
 
 use Agence\BaseController;
+use Agence\Session;
 
 class HomeController extends BaseController
 {    
+
+    public array $users;
     
-    public function index()
+    public function __construct($id = null) 
     {
-        $data = [
-            'name' => 'Mike',
-            'id' => '1',
+        //parent::__construct($id);
+
+        $this->users = [
+            'admin' => \password_hash('azerty', PASSWORD_BCRYPT)
         ];
 
-        return $this->view('home/index', $data);
+        $this->id = \intval($id ?? 0);
+    }
+    
+    /**
+     * Page d'accueil du site
+     * @Route("/")
+     */
+    public function index()
+    {
+        if(Session::isLogged()) {
+            // redirection vers /users
+            header('Location: /users');
+            exit;
+        }
+        else {
+            // redirection vers /home/login
+            header('Location: /home/login');
+            exit;
+        }
     }
 
-    public function about()
+    /**
+     * Formulaire d'identification
+     * @Route("/home/login")
+     */
+    public function login()
     {
-        return 'SALUT HomeController/about';
+
+        return $this->view('home/login');
     }
 }

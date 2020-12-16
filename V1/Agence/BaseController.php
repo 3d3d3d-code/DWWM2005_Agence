@@ -16,6 +16,19 @@ namespace Agence;
 
 abstract class BaseController 
 {
+    /**
+     * correspond à la 3ème composante de l'url (ie: controller/action/id)
+     */
+    protected $id;
+
+
+    /**
+     * 
+     */
+    public function __construct($id = null)
+    {
+        $this->$id = $id;
+    }
 
     /** 
      * La méthode index() est la méthode par défaut.
@@ -46,8 +59,8 @@ abstract class BaseController
 
         // extraction du tableau de données.
         // pour chaque clé du tableau, une variable portant le même nom est créée.
-        // ex: pour le tableau $data = ['name' => 'Mike']
-        // extract crée une variable $name = "Mike"
+        // ex: pour le tableau $data = ['name' => 'Mike', 'id' => 2]
+        // extract crée une variable $name = "Mike" + $id = 2
         \extract($data);
 
         // inclusion de la vue (la vue utilise les varaibles créées par extract())

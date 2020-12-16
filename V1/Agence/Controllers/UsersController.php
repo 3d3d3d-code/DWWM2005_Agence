@@ -17,9 +17,14 @@ use Agence\BaseController;
 class UsersController extends BaseController
 {
 
+
+    /**
+     * Affiche la liste des utilisateurs
+     * @Route("/users", name="Homepage")
+     */
     public function index()
     {
-        
+        return $this->view('users/index');
     }
     
 }
