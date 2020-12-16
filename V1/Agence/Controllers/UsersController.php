@@ -13,6 +13,7 @@
 namespace Agence\Controllers;
 
 use Agence\BaseController;
+use Agence\Session;
 
 class UsersController extends BaseController
 {
@@ -24,6 +25,8 @@ class UsersController extends BaseController
      */
     public function index()
     {
+        Session::isLogged();        
+        var_export($_SESSION);
         return $this->view('users/index');
     }
     

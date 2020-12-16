@@ -14,6 +14,7 @@ namespace Agence\Controllers;
 
 use Agence\BaseController;
 use Agence\Session;
+use Agence\Validation;
 
 class HomeController extends BaseController
 {    
@@ -25,14 +26,16 @@ class HomeController extends BaseController
         //parent::__construct($id);
 
         $this->users = [
-            'admin' => \password_hash('azerty', PASSWORD_BCRYPT)
+            'admin' => \password_hash('Azerty78!', PASSWORD_BCRYPT)
         ];
 
         $this->id = \intval($id ?? 0);
     }
     
     /**
-     * Page d'accueil du site
+     * Vérifie s'utilisateur est connecté
+     * Si identifié : redirection vers /users
+     * sinon : redirection
      * @Route("/")
      */
     public function index()
@@ -55,6 +58,28 @@ class HomeController extends BaseController
      */
     public function login()
     {
+        echo '<pre>'.var_export($_POST, true).'</pre>';
+
+        if($_POST) {
+            $username = $_POST['username'] ?? null;
+            $pass = $_POST['pass'] ?? null;
+
+            if( Validation::isAlphanumeric($username, 4)
+                && 
+                Validation::isValidPassword($pass)
+            ) 
+            {
+                if(array_key_exists($username, $this->users)) {
+                    if(password_verify($pass, $this->users[$username])) {
+                        Session::login($username);
+                        header('location: /users');
+                        exit;
+                    }
+                }
+            }
+            header('location: /home/login');
+            exit;
+        }
 
         return $this->view('home/login');
     }

@@ -40,4 +40,24 @@ class Validation
             return false;
         }
     }
+
+    static public function isAlphanumeric(string $subject, int $minLength = 1)
+    {
+        $subject = basename($subject);
+
+        return preg_match('/^([a-zA-Z]+[a-zA-Z0-9]*){'.$minLength.',}$/', $subject);
+    }
+
+    static public function isValidPassword(string $subject)
+    {
+        return preg_match('/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/', $subject);
+    }
+
+    static public function isValidEmail(string $subject) 
+    {
+        return filter_var($subject, FILTER_VALIDATE_EMAIL);
+    }
 }
+
+//Validation::isAlphanumeric('azerty');
+//Validation::isAlphanumeric('azerty', 4);
