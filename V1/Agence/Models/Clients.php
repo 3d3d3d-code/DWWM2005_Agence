@@ -37,7 +37,7 @@ class Clients
         return $users;
     }
 
-    public function getBy(string $colonne, string $values)
+    public function getBy(string $colonne, array $values)
     {
 
     }
