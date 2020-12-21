@@ -49,11 +49,21 @@ class Session
     }
 
 
+    /**
+     * Définit une donnée dans la session utilisateur courante
+     * @param string $_key la clé dans le tableau $_SESSION
+     * @param string $_value la valeur à associer à la clé
+     */
     static public function set(string $_key, string $_value)
     {
         $_SESSION[$_key] = $_value;
     }
 
+    /**
+     * Lit une donnée dans la session utilisateur courante
+     * @param string $_key la clé dans le tableau $_SESSION
+     * @param bool $_value la valeur à associer à la clé
+     */
     static public function get(string $_key, bool $_delete = false)
     {
         $value = $_SESSION[$_key] ?? null;

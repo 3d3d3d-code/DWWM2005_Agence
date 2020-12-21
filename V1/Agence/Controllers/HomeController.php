@@ -13,21 +13,17 @@
 namespace Agence\Controllers;
 
 use Agence\BaseController;
+use Agence\Models\Sales;
 use Agence\Session;
 use Agence\Validation;
 
 class HomeController extends BaseController
 {    
 
-    public array $users;
     
     public function __construct($id = null) 
     {
         //parent::__construct($id);
-
-        $this->users = [
-            'admin' => \password_hash('Azerty78!', PASSWORD_BCRYPT)
-        ];
 
         $this->id = \intval($id ?? 0);
     }
@@ -58,35 +54,51 @@ class HomeController extends BaseController
      */
     public function login()
     {
-        echo '<pre>'.var_export($_POST, true).'</pre>';
+        //echo '<pre>'.var_export($_POST, true).'</pre>';
 
+        // Si le formulaire a été soumis
         if($_POST) {
+            // récupération des champs nécessaires ou null si non renseignés
             $username = $_POST['username'] ?? null;
             $pass = $_POST['pass'] ?? null;
 
-            if( Validation::isAlphanumeric($username, 4)
+            // Si le nom d'utilisateur et le mot de passe correspondent aux formats requis
+            if( Validation::isAlphanumeric($username, 2)
                 && 
                 Validation::isValidPassword($pass)
             ) 
             {
-                if(array_key_exists($username, $this->users)) {
-                    if(password_verify($pass, $this->users[$username])) {
-                        Session::login($username);
-                        header('location: /users');
-                        exit;
+                // on instancie la classe d'accès à la table des commercieux
+                $sales = new Sales(); 
+                
+                // Récupération de l'utilisateur demandé
+                $user = $sales->getByUsername($username);
+                    
+                // si l'utilisateur existe
+                if($user !== false) {
+                    // si les mots de passe correspondent
+                    if(password_verify($pass, $user['com_password'])) {
+                        Session::login($user); // ajout de l'utilisateur dans la session
+                        header('location: /users'); // redirection
+                        exit; 
                     }
-                }
+               }
             }
+
             // identification échouée
             Session::set('msg', 'identifiants incorrects');
-            //$msg = Session::get('user');
             header('location: /home/login');
             exit;
         }
 
+        // si aucun formulaire soumis ($_POST vide), on affiche simplement le formulaire
         return $this->view('home/login');
     }
 
+    /**
+     * Déconnexion de l'utilisateur
+     * @Route('/home/logout')
+     */
     public function logout()
     {
         Session::logout();

@@ -1,11 +1,13 @@
 <?php
 
-use Agence\Models\Country;
-use Agence\Models\Sales;
 
-// methode 1
-$sales= new Sales();
-$result = $sales->getById('AF123');
+namespace Agence\Models;
 
+echo password_hash('Azerty1234!', PASSWORD_BCRYPT);
+echo "\n";
 
-$result = Country::getById('FR');
+class A {
+
+}
+
+echo A::class;
