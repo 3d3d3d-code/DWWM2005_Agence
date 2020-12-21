@@ -47,4 +47,21 @@ class Session
     {
         \session_destroy();
     }
+
+
+    static public function set(string $_key, string $_value)
+    {
+        $_SESSION[$_key] = $_value;
+    }
+
+    static public function get(string $_key, bool $_delete = false)
+    {
+        $value = $_SESSION[$_key] ?? null;
+
+        if($_delete === true) {
+            $_SESSION[$_key] = null;
+        }
+
+        return $value;
+    }
 }

@@ -45,7 +45,7 @@ class Validation
     {
         $subject = basename($subject);
 
-        return preg_match('/^([a-zA-Z]+[a-zA-Z0-9]*){'.$minLength.',}$/', $subject);
+        return preg_match('/^([a-zA-Z]+[a-zA-Z0-9]*){'.($minLength - 1).',}$/', $subject);
     }
 
     static public function isValidPassword(string $subject)

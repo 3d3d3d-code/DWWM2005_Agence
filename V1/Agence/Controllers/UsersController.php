@@ -25,7 +25,6 @@ class UsersController extends BaseController
      */
     public function index()
     {
-        Session::isLogged();        
         var_export($_SESSION);
         return $this->view('users/index');
     }

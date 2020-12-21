@@ -77,10 +77,20 @@ class HomeController extends BaseController
                     }
                 }
             }
+            // identification échouée
+            Session::set('msg', 'identifiants incorrects');
+            //$msg = Session::get('user');
             header('location: /home/login');
             exit;
         }
 
         return $this->view('home/login');
+    }
+
+    public function logout()
+    {
+        Session::logout();
+        header('location: /');
+        exit;
     }
 }

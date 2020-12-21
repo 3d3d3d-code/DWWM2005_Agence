@@ -14,6 +14,14 @@ class FrontController extends BaseController
      */
     public function __construct(string $controller, string $action, $id)
     {
+
+        if($controller !== '\\Agence\\Controllers\\HomeController' 
+            && !Session::isLogged()
+            ) {
+            header('location: /');
+            exit;
+        }  
+
         $this->controller = new $controller($id);      
         
         // si $action correspond à une méthode existante dans notre contrôleur

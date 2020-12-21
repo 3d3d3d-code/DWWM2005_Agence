@@ -4,5 +4,9 @@
     <input type="password" name="pass">
     <br>
     <button type="submit">Se connecter</button>
+    <!-- afficher le message d'erreur s'il existe -->
+    <?php
+        echo Agence\Session::get('msg', true);
+    ?>
 </form>
 
