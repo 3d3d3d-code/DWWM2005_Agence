@@ -19,12 +19,19 @@ class ClientsController extends BaseController
 
     public function index()
     {
-        // TODO: Implement index() method.
+        $clients = new Clients();
+
+        return $this->view('clients/index', ['datas' => $clients->getByAll()]);
     }
 
-    public function client(Client $client)
+    public function client()
     {
+        var_export($this->id);
 
+        $client = new clients();
+        $client->getBy('id', [ 'value' => 1]);
+
+        return $this->view('clients/client', ['datas' => $client]);
     }
 
     public function add()
