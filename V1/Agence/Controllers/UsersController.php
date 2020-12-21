@@ -17,8 +17,6 @@ use Agence\Session;
 
 class UsersController extends BaseController
 {
-
-
     /**
      * Affiche la liste des utilisateurs
      * @Route("/users", name="Homepage")
