@@ -47,7 +47,7 @@ class Clients
      * @param $value value of the search
      * @return array|null
      */
-    public function getBy(string $colonne, $value) : array
+    public function getBy(string $colonne, $value)
     {
         $stmt = false;
         $user = null;
@@ -68,5 +68,17 @@ class Clients
         }
 
         return $user;
+    }
+
+    public function insert(){
+
+    }
+
+    public function update(){
+
+    }
+
+    public function delete(){
+
     }
 }
