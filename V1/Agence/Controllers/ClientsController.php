@@ -17,33 +17,46 @@ use Agence\Models\Clients;
 class ClientsController extends BaseController
 {
 
-    public function index()
+    /**
+     * @Route("/clients", name="clients")
+     */
+    public function index() : string
     {
         $clients = new Clients();
 
         return $this->view('clients/index', ['datas' => $clients->getByAll()]);
     }
 
-    public function client()
+    /**
+     * @Route("/clients/client/{id}")
+     */
+    public function client() : string
     {
-        var_export($this->id);
-
         $client = new clients();
-        $client->getBy('id', [ 'value' => 1]);
+        $client = $client->getBy('client_id', '1');
 
-        return $this->view('clients/client', ['datas' => $client]);
+        return $this->view('clients/client', ['client' => $client]);
     }
 
+    /**
+     * @Route("/clients/add")
+     */
     public function add()
     {
 
     }
 
+    /**
+     * @Route("/clients/update/{id}")
+     */
     public function update(Client $client)
     {
 
     }
 
+    /**
+     * @Route("/clients/delete/{id}")
+     */
     public function delete(Client $client)
     {
 

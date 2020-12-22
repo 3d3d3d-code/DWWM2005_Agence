@@ -10,6 +10,7 @@
 namespace Agence\Models;
 
 use \PDO;
+use \PDOException;
 
 class Clients
 {
@@ -20,9 +21,14 @@ class Clients
         $this->pdo = Db::getPdo();
     }
 
+    /**
+     * Return all clients of the database
+     * @return array
+     */
     public function getByAll() : array
     {
         $stmt = false;
+        $users = [];
 
         $sql = 'SELECT * FROM clients';
 
@@ -32,13 +38,34 @@ class Clients
 
         $users = $stmt->fetchAll(PDO::FETCH_CLASS, Client::class);
 
-        $stmt->closeCursor();
-
         return $users;
     }
 
-    public function getBy(string $colonne, array $values)
+    /**
+     * Return one client choix of database
+     * @param string $colonne name of the column
+     * @param $value value of the search
+     * @return array|null
+     */
+    public function getBy(string $colonne, $value) : ?array
     {
+        $stmt = false;
+        $user = null;
 
+        $sql = 'select * from clients where '.$colonne.' = ? limit 1';
+
+        if($this->pdo->prepare($sql)){
+            $stmt = $this->pdo->prepare($sql);
+        }
+
+        try {
+            if($stmt->execute([$value])){
+                $user = $stmt->fetchAll(PDO::FETCH_CLASS, Client::class);
+            }
+        }catch (PDOException $e){
+            echo "Error: une erreur a été levé lors de l'execution de la requete getBy client :\n  $e";
+        }
+
+        return $user;
     }
 }
