@@ -47,7 +47,7 @@ class Clients
      * @param $value value of the search
      * @return array|null
      */
-    public function getBy(string $colonne, $value) : ?array
+    public function getBy(string $colonne, $value)
     {
         $stmt = false;
         $user = null;
@@ -60,7 +60,8 @@ class Clients
 
         try {
             if($stmt->execute([$value])){
-                $user = $stmt->fetchAll(PDO::FETCH_CLASS, Client::class);
+                $stmt->setFetchMode(PDO::FETCH_CLASS, Client::class);
+                $user = $stmt->fetch();
             }
         }catch (PDOException $e){
             echo "Error: une erreur a été levé lors de l'execution de la requete getBy client :\n  $e";

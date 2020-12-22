@@ -28,17 +28,6 @@ class ClientsController extends BaseController
     }
 
     /**
-     * @Route("/clients/client/{id}")
-     */
-    public function client() : string
-    {
-        $client = new clients();
-        $client = $client->getBy('client_id', '1');
-
-        return $this->view('clients/client', ['client' => $client]);
-    }
-
-    /**
      * @Route("/clients/add")
      */
     public function add()
@@ -47,11 +36,17 @@ class ClientsController extends BaseController
     }
 
     /**
-     * @Route("/clients/update/{id}")
+     * @Route("/clients/update/{id}", name="client_update")
      */
-    public function update(Client $client)
+    public function update()
     {
+        $client = new clients();
 
+        $id = intval($this->id);
+
+        $client = $client->getBy('client_id', $id);
+
+        return $this->view('clients/client_update', ['client' => $client]);
     }
 
     /**

@@ -24,7 +24,7 @@
                 <td>' . $client->getClientAdded() . '</td>
                 <td><a href=\'/sales/sale/'.$client->getComcode().'\'>' . $client->getComcode() . '</a></td>
                 <td>
-                    <a href=\'/clients/client/' . $client->getClientId() . '\'>voir/edité</a>
+                    <a href=\'/clients/update/' . $client->getClientId() . '\'>voir/éditer</a>
                     <a href=\'/clients/delete/' . $client->getClientId() . '\'>Supprimer</a>
                 </td>
               </tr>';
