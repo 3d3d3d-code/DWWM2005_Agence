@@ -47,7 +47,7 @@ class Clients
      * @param $value value of the search
      * @return array|null
      */
-    public function getBy(string $colonne, $value)
+    public function getBy(string $colonne, $value) : array
     {
         $stmt = false;
         $user = null;
