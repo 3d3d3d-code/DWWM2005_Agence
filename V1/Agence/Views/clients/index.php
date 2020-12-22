@@ -22,7 +22,7 @@
                 <td>' . $client->getClientemail() . '</td>
                 <td>' . $client->getClientPhone() . '</td>
                 <td>' . $client->getClientAdded() . '</td>
-                <td>' . $client->getComcode() . '</td>
+                <td><a href=\'/sales/sale/'.$client->getComcode().'\'>' . $client->getComcode() . '</a></td>
                 <td>
                     <a href=\'/clients/client/' . $client->getClientId() . '\'>voir/edité</a>
                     <a href=\'/clients/delete/' . $client->getClientId() . '\'>Supprimer</a>

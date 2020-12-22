@@ -38,7 +38,7 @@ class HomeController extends BaseController
     {
         if(Session::isLogged()) {
             // redirection vers /users
-            header('Location: /users');
+            header('Location: /sales');
             exit;
         }
         else {
@@ -78,8 +78,9 @@ class HomeController extends BaseController
                 if($user !== false) {
                     // si les mots de passe correspondent
                     if(password_verify($pass, $user['com_password'])) {
+                        unset($user['com_password']);
                         Session::login($user); // ajout de l'utilisateur dans la session
-                        header('location: /users'); // redirection
+                        header('location: /sales'); // redirection
                         exit; 
                     }
                }

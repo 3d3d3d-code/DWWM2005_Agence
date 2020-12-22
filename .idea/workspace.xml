@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ccd5bb88-2be0-4a92-b3fe-52c2be9d8c0f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/DWWM2005_Agence.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/704ed6dc-e282-439e-be4c-9d98a66b8b44.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/704ed6dc-e282-439e-be4c-9d98a66b8b44/storage_v2/_src_/schema/tp_agence_voyages.CVqozg.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/V1/Agence/Controllers/SalesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/V1/Agence/Views/sales/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/V1/Agence/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/V1/Agence/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Controllers/UsersController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Models/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/V1/Agence/Models/Clients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Models/Country.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Models/Sales.php" beforeDir="false" afterPath="$PROJECT_DIR$/V1/Agence/Models/Sales.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Views/clients/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/V1/Agence/Views/clients/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V1/Agence/Views/users/index.php" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1lNY1xau3GqTLOhloJdFGsKgQB3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ccd5bb88-2be0-4a92-b3fe-52c2be9d8c0f" name="Default Changelist" comment="" />
+      <created>1607438805127</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607438805127</updated>
+      <workItem from="1607438812525" duration="6769000" />
+      <workItem from="1607596583090" duration="81000" />
+      <workItem from="1607933051019" duration="648000" />
+      <workItem from="1607941088050" duration="1885000" />
+      <workItem from="1608021913372" duration="2839000" />
+      <workItem from="1608541649861" duration="2052000" />
+      <workItem from="1608564478006" duration="10044000" />
+      <workItem from="1608626324657" duration="6121000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

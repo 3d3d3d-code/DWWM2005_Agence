@@ -22,7 +22,7 @@ class Clients
     }
 
     /**
-     * Return all clients of the database
+     * Returns all clients of the database
      * @return array
      */
     public function getByAll() : array

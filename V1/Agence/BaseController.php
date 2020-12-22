@@ -27,7 +27,7 @@ abstract class BaseController
      */
     public function __construct($id = null)
     {
-        $this->$id = $id;
+        $this->id = $id;
     }
 
     /** 
