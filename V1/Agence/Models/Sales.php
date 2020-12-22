@@ -28,6 +28,20 @@ class Sales
     {
         $this->pdo = Db::getPdo();
     }
+
+    /**
+     * Retourne tous les commerciaux
+     * @return array tous les commerciaux présents dans la table
+     */
+    public function getAll()
+    {
+        try {
+            return $this->pdo->query("SELECT com_code, com_name, com_substitute FROM sales ORDER BY com_code ASC;")->fetchAll();
+            
+        } catch (PDOException $e) {
+
+        }
+    }
     
     /**
      * Recherche un commercial par son code d'identification (com_code)
