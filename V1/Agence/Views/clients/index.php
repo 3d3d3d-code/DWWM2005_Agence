@@ -1,13 +1,13 @@
 <table>
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Last name</th>
-            <th>First name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Added</th>
-            <th>com_code</th>
+            <th>Identifiant client</th>
+            <th>Le nom du client</th>
+            <th>Le prénom du client</th>
+            <th>L'email du client</th>
+            <th>Le numéro de téléphone du client</th>
+            <th>La date d'inscription du client</th>
+            <th>Le commercial rattaché au client</th>
         </tr>
     </thead>
     <tbody>
