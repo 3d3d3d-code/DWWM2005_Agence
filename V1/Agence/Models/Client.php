@@ -9,7 +9,6 @@
  */
 namespace Agence\Models;
 
-
 class Client
 {
     private int $client_id;
@@ -26,7 +25,17 @@ class Client
 
     private string $client_password;
 
-    private string $com_code;
+    private ?string $com_code = null;
+
+    public function asArray(){
+        $rows = [];
+
+        foreach ($this as $data){
+            $rows[] = $data;
+        }
+
+        return $rows;
+    }
 
     /**
      * @return int
@@ -116,12 +125,9 @@ class Client
         return $this->client_added;
     }
 
-    /**
-     * @param string $client_added
-     */
-    public function setClientAdded(string $client_added): void
+    public function setClientAdded(): void
     {
-        $this->client_added = $client_added;
+        $this->client_added = date('y-m-d');
     }
 
     /**
@@ -137,7 +143,7 @@ class Client
      */
     public function setClientPassword(string $client_password): void
     {
-        $this->client_password = $client_password;
+        $this->client_password = password_hash($client_password, PASSWORD_BCRYPT);
     }
 
     /**

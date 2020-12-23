@@ -11,8 +11,13 @@
 namespace Agence\Controllers;
 
 use Agence\BaseController;
+
 use Agence\Models\Clients;
+use Agence\Models\Client;
+use Agence\Models\Sales;
+
 use Agence\Session;
+use Agence\Validation;
 
 class ClientsController extends BaseController
 {
@@ -33,12 +38,52 @@ class ClientsController extends BaseController
      */
     public function add() : string
     {
+        $sales = new Sales();
 
         if($_POST){
+            $lastname = $_POST['lastname'] ?? null;
+            $firstname = $_POST['firstname'] ?? null;
+            $pwd = $_POST['pwd'] ?? null;
+            $pwd_b = $_POST['pwd_b'] ?? null;
+            $email = $_POST['email'] ?? null;
+            $telephone = $_POST['telephone'] ?? null;
+            $sale = $_POST['sale'] ?? null;
 
+            if($sale != null){
+
+                foreach ($sales->getAll() as $sl){
+                    $sl->getCode_com();
+                }
+                //TODO : Verifier que le commercial existe dans la db par getBy
+
+            }else{
+
+            }
+
+            if(
+                Validation::isAlphabetic($lastname) &&
+                Validation::isAlphabetic($firstname) &&
+                Validation::isValidPassword($pwd) &&
+                ($pwd === $pwd_b) &&
+                Validation::isValidEmail($email)
+            ){
+                $client = new Clients();
+                $clt = new Client();
+                $clt->setClientLastname($lastname);
+                $clt->setClientFirstname($firstname);
+                $clt->setClientPassword($pwd);
+                $clt->getClientEmail($email);
+                $clt->getClientPhone($telephone);
+                $client->insert();
+
+            } else {
+                Session::set('msg', 'Une erreur c\'est produite lors de la soumission du formulaire');
+                header('Location: /clients/add');
+                exit();
+            }
         }
 
-        return $this->view('clients/client_add');
+        return $this->view('clients/client_add', ['sales' => $sales->getAll()]);
     }
 
     /**
@@ -79,20 +124,24 @@ class ClientsController extends BaseController
         }
 
         if($_POST){
-
-            if($_POST['choix'] != 'true'){
-                $error = true;
-            } else if ($_POST['choix'] != 'false') {
+            if($_POST['choix'] != 'true' && $_POST['choix'] != 'false'){
                 $error = true;
             }
 
             if($error){
-                Session::set('msg', 'Une erreur c\'est glissé dans le choix');
+                Session::set('msg', 'Une erreur c\'est glissé dans le choix ');
                 header('Location: /clients/delete/'.$client->getClientId().'');
                 exit();
             }
 
+            if($_POST['choix'] === 'false'){
+                header('Location: /clients/update/'.$client->getClientId().'');
+                exit();
+            }
+
         }
+
+
 
         return $this->view('clients/client_delete', [
             'client' => $client,

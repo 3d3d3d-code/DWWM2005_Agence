@@ -4,7 +4,7 @@ if($msg){
 }
 if($client != null){
 ?>
-<form action="/clients/delete/<?= $client->getClientId() ?>" method="post">
+<form action="/clients/delete/<?= $client->getClientId() ?>" method="POST">
     <label for="choix">Voulez vous supprimez le client?</label>
     <select name="choix" id="choix">
         <option value="false" selected>no</option>

@@ -78,7 +78,24 @@ class Clients
 
     }
 
-    public function delete(){
+    public function delete(string $colonne, $value){
+        $stmt = false;
+        $user = null;
 
+        $sql = 'update from clients where '.$colonne.' = ?';
+
+        if($this->pdo->prepare($sql)){
+            $stmt = $this->pdo->prepare($sql);
+        }
+
+        try {
+            if($stmt->execute([$value])){
+                $user = $stmt->execute([$value]);
+            }
+        }catch (PDOException $e){
+            echo "Error: une erreur a été levé lors de l'execution de la requete getBy client :\n  $e->getMessage()";
+        }
+
+        return $user;
     }
 }
