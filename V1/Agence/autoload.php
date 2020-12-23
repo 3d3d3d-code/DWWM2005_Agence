@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AUTOLOAD.PHP
  * 
@@ -21,7 +22,7 @@ function agence_autoload(string $_classname)
 {
     $_classname = str_replace('\\', '/', $_classname);
 
-    $_classname = (__DIR__ . '/' . $_classname . '.php');
+    $_classname = (dirname(__DIR__) . '/' . $_classname . '.php');
 
     if (is_file($_classname)) {
         require $_classname;
