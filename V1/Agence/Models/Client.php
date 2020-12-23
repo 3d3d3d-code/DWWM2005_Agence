@@ -27,11 +27,11 @@ class Client
 
     private ?string $com_code = null;
 
-    public function asArray(){
+    public function toArray(){
         $rows = [];
 
-        foreach ($this as $data){
-            $rows[] = $data;
+        foreach ($this as $key => $data){
+            $rows[$key] = $data;
         }
 
         return $rows;

@@ -25,7 +25,7 @@ class ClientsController extends BaseController
      * @Route("/clients", name="clients")
      * @return string
      */
-    public function index() : string
+    public function index(): string
     {
         $clients = new Clients();
 
@@ -36,11 +36,11 @@ class ClientsController extends BaseController
      * @Route("/clients/add", name="client_add")
      * @return string
      */
-    public function add() : string
+    public function add(): string
     {
         $sales = new Sales();
 
-        if($_POST){
+        if ($_POST) {
             $lastname = $_POST['lastname'] ?? null;
             $firstname = $_POST['firstname'] ?? null;
             $pwd = $_POST['pwd'] ?? null;
@@ -49,24 +49,13 @@ class ClientsController extends BaseController
             $telephone = $_POST['telephone'] ?? null;
             $sale = $_POST['sale'] ?? null;
 
-            if($sale != null){
-
-                foreach ($sales->getAll() as $sl){
-                    $sl->getCode_com();
-                }
-                //TODO : Verifier que le commercial existe dans la db par getBy
-
-            }else{
-
-            }
-
-            if(
+            if (
                 Validation::isAlphabetic($lastname) &&
                 Validation::isAlphabetic($firstname) &&
                 Validation::isValidPassword($pwd) &&
                 ($pwd === $pwd_b) &&
                 Validation::isValidEmail($email)
-            ){
+            ) {
                 $client = new Clients();
                 $clt = new Client();
                 $clt->setClientLastname($lastname);
@@ -74,23 +63,40 @@ class ClientsController extends BaseController
                 $clt->setClientPassword($pwd);
                 $clt->getClientEmail($email);
                 $clt->getClientPhone($telephone);
+
+                if ($sale != null) {
+                    foreach ($sales->getAll() as $sl) {
+                        if($sale = $sl->getCode_com()){
+                            $clt->setComCode($sale);
+                        }else{
+                            Session::set('msg', 'Une erreur c\'est produite lors de la soumission du formulaire');
+                            header('Location: /clients/add');
+                            exit();
+                        }
+                    }
+                }
+
                 $client->insert();
 
             } else {
+                //TODO : retourner les valeurs dans les champs
                 Session::set('msg', 'Une erreur c\'est produite lors de la soumission du formulaire');
                 header('Location: /clients/add');
                 exit();
             }
         }
 
-        return $this->view('clients/client_add', ['sales' => $sales->getAll()]);
+        return $this->view('clients/client_add', [
+            'sales' => $sales->getAll(),
+            'msg' => Session::get('msg', true)
+        ]);
     }
 
     /**
      * @Route("/clients/update/{id}", name="client_update")
      * @return  string
      */
-    public function update() : string
+    public function update(): string
     {
         $client = new clients();
 
@@ -98,7 +104,7 @@ class ClientsController extends BaseController
 
         $client = $client->getBy('client_id', $id);
 
-        if($_POST){
+        if ($_POST) {
 
         }
 
@@ -109,7 +115,7 @@ class ClientsController extends BaseController
      * @Route("/clients/delete/{id}", name="client_delete")
      * @return string
      */
-    public function delete() : string
+    public function delete(): string
     {
         $client = new Clients();
         $msg = null;
@@ -119,28 +125,27 @@ class ClientsController extends BaseController
 
         $client = $client->getBy('client_id', $id);
 
-        if(empty($client)){
-            Session::set('msg', 'Le client '.$this->id.' n\'existe pas!');
+        if (empty($client)) {
+            Session::set('msg', 'Le client ' . $this->id . ' n\'existe pas!');
         }
 
-        if($_POST){
-            if($_POST['choix'] != 'true' && $_POST['choix'] != 'false'){
+        if ($_POST) {
+            if ($_POST['choix'] != 'true' && $_POST['choix'] != 'false') {
                 $error = true;
             }
 
-            if($error){
+            if ($error) {
                 Session::set('msg', 'Une erreur c\'est glissé dans le choix ');
-                header('Location: /clients/delete/'.$client->getClientId().'');
+                header('Location: /clients/delete/' . $client->getClientId() . '');
                 exit();
             }
 
-            if($_POST['choix'] === 'false'){
-                header('Location: /clients/update/'.$client->getClientId().'');
+            if ($_POST['choix'] === 'false') {
+                header('Location: /clients/update/' . $client->getClientId() . '');
                 exit();
             }
 
         }
-
 
 
         return $this->view('clients/client_delete', [

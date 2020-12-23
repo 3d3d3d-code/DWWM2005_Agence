@@ -16,9 +16,9 @@
     <select name="sale" id="sale">
         <option selected>Choisir un commercial</option>
         <?php
-            foreach ($sales as $sale){
+            /*foreach ($sales as $sale){
                 echo '<option value="'.$sale->getCom_code().'">'.$sale->getCom_code().'</option>';
-            }
+            }*/
         ?>
 
     </select>

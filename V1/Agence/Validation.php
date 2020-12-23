@@ -55,8 +55,8 @@ class Validation
     static public function isAlphanumeric(string $subject, int $minLength = 1)
     {
         $subject = basename($subject);
-
-        return preg_match('/^([a-zA-Z]+[a-zA-Z0-9]*){'.($minLength - 1).',}$/', $subject);
+        $prt = '([a-zA-Z]+[a-zA-Z0-9]*){'.$minLength.',}';
+        return preg_match('/^'.$prt.'$/', $subject);
     }
 
     static public function isValidPassword(string $subject)
@@ -67,6 +67,11 @@ class Validation
     static public function isValidEmail(string $subject) 
     {
         return filter_var($subject, FILTER_VALIDATE_EMAIL);
+    }
+
+    static public function isValidPhone(string $subject)
+    {
+
     }
 }
 
