@@ -41,6 +41,17 @@ class Validation
         }
     }
 
+    static public function isValidName(string $subject): bool
+    {
+
+        // si $subject correspond à la regex
+        if (preg_match('/^[a-zA-Z\s]+$/', $subject)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     static public function isAlphanumeric(string $subject, int $minLength = 1)
     {
         $subject = basename($subject);
