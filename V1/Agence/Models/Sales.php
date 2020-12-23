@@ -14,6 +14,7 @@ namespace Agence\Models;
 
 use PDO;
 use PDOException;
+use PDORow;
 
 class Sales 
 {
@@ -73,6 +74,39 @@ class Sales
 
         } catch(PDOException $e) {
 
+        }
+    }
+
+
+    /**
+     * Insère un nouveau commercial
+     * @param Saleman $newItem le nouveau commercial à ajouter
+     * @return int le nombre de lignes affectées par la requête INSERT (à priori 1^^)
+     */
+    public function insert(Saleman $newItem)
+    {
+        try {
+            $nb = 0;
+        
+            $sql = "INSERT INTO sales 
+            (com_code, com_name, com_password, com_substitute)
+            VALUES 
+            (:com_code, :com_name, :com_password, :com_substitute);";
+
+            $values = $newItem->toArray();
+
+            $stmt = $this->pdo->prepare($sql);
+
+            if($stmt->execute($values)) {
+                $nb = $stmt->rowCount(); // nombre de lignes affectées par la requête
+            }
+
+            $stmt->closeCursor();
+
+            return $nb;
+            
+        } catch(PDOException $e) {
+            exit($e->getMessage());
         }
     }
 

@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+/*
+Container FLEX
+*/
+.flex-form {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 1em auto;
+    gap: 5px;
+}
+
+/* éléments impairs */
+.flex-form > *:nth-child(odd) {
+    flex-basis: 30%;
+}
+
+/* éléments pairs */
+.flex-form > *:nth-child(even) {
+    flex-basis: 68%;
+}
+
+/* dernier élément */
+.flex-form > *:last-child {
+    flex-basis: 100%;
+}

@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>Agence Titanic</title>
+    <link rel="stylesheet" href="/assets/backoffice.css">
 </head>
 <body>
 

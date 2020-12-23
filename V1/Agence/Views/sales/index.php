@@ -3,13 +3,15 @@
 <?php 
 //var_export($users);
 // afficher tous les commerciaux
-
+/*
 foreach($users as $key => $user)
 {
     echo $key . ': ' . $user['com_name'].'<br>';
-}
+}*/
 
 ?>
+<a href="/sales/add">Ajouter un commercial</a>
+<hr>
 
 <table border="1">
     <thead>
@@ -21,12 +23,12 @@ foreach($users as $key => $user)
         </tr>   
     </thead>
     <tbody>
-        <tr>
+       <!-- <tr>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-        </tr>
+        </tr> -->
         <?php 
             foreach($users as $key => $user)
             {
